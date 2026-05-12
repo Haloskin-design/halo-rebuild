@@ -47,7 +47,7 @@ export function Hero({
           pointerEvents: 'none',
           userSelect:    'none',
         }}>
-      >
+      
         <Image
           src={imageSrc}
           alt=""
