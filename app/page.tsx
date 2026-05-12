@@ -114,7 +114,7 @@ export default function HomePage() {
             sizes="50vw"
             style={{
               objectFit:      'cover',
-              objectPosition: 'center 11%',
+              objectPosition="center 38%"
               filter:         'sepia(0.85) brightness(0.65) contrast(1.0)',
               transition:     'filter 1s ease, transform 1.2s ease',
             }}
