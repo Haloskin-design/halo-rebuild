@@ -113,7 +113,7 @@ export function Hero({
               fontWeight:    300,
               lineHeight:    1.02,
               letterSpacing: '-0.02em',
-              fontSize:      'clamp(2.6rem, 5vw, 4.8rem)',
+              fontSize:      'clamp(2rem, 4vw, 3.8rem)',
               marginBottom:  '1.4rem',
             }}
           >
