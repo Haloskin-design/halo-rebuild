@@ -1,4 +1,4 @@
-import Image from 'next/image'
+'clamp(2rem, 4vw, 3.8rem)',import Image from 'next/image'
 import Link from 'next/link'
 
 interface HeroProps {
