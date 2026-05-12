@@ -46,7 +46,7 @@ export function Hero({
           inset:         0,
           pointerEvents: 'none',
           userSelect:    'none',
-        }}
+        }}>
       >
         <Image
           src={imageSrc}
