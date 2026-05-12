@@ -20,7 +20,7 @@ export default function HomePage() {
         headingLine2="enhancing what is"
         headingLine3="already yours."
         sub="Vegan  ·  Cruelty free  ·  Made sustainably in the UK"
-        sub="vegan · cruelty free · made sustainably in the uk"
+        
         showCtas
       />
 
