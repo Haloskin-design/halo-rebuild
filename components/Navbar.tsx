@@ -13,12 +13,12 @@ const LINKS = [
 ] as const
 
 export function Navbar() {
-  const pathname                = usePathname()
+  const pathname = usePathname()
   const [open, setOpen]         = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [visible, setVisible]   = useState(true)
-  const lastY                   = useRef(0)
-  const menuRef                 = useRef<HTMLDivElement>(null)
+  const lastY = useRef(0)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { setOpen(false) }, [pathname])
 
@@ -58,25 +58,28 @@ export function Navbar() {
       <header
         role="banner"
         style={{
-          position:        'fixed',
-          top:             0,
-          left:            0,
-          right:           0,
-          zIndex:          9000,
-          isolation:       'isolate',
-          transform:       visible ? 'translateY(0)' : 'translateY(-100%)',
-          transition:      'transform 0.5s cubic-bezier(0.25,0.1,0,1), background-color 0.6s ease, border-color 0.6s ease',
-          height:          'var(--nav-h)',
-          backgroundColor: scrolled ? 'rgba(14, 12, 10, 0.97)' : 'rgba(14, 12, 10, 0)',
-          borderBottom:    scrolled
-            ? '1px solid rgba(255,255,255,0.06)'
+          position:    'fixed',
+          top:         0,
+          left:        0,
+          right:       0,
+          zIndex:      9000,
+          isolation:   'isolate',
+          transform:   visible ? 'translateY(0)' : 'translateY(-100%)',
+          transition:  'transform 0.5s cubic-bezier(0.25,0.1,0,1), background-color 0.6s ease',
+          height:      'var(--nav-h)',
+          backgroundColor: scrolled
+            ? 'rgba(24, 21, 19, 0.97)'
+            : 'rgba(24, 21, 19, 0)',
+          borderBottom: scrolled
+            ? '1px solid rgba(255,255,255,0.05)'
             : '1px solid transparent',
-          backdropFilter:       scrolled ? 'blur(16px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-          display:         'flex',
-          alignItems:      'center',
-          paddingLeft:     'clamp(1.5rem, 5vw, 5rem)',
-          paddingRight:    'clamp(1.5rem, 5vw, 5rem)',
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+          display:      'flex',
+          alignItems:   'center',
+          justifyContent: 'space-between',
+          paddingLeft:  'clamp(1.5rem, 5vw, 5rem)',
+          paddingRight: 'clamp(1.5rem, 5vw, 5rem)',
         }}
       >
         {/* Logo */}
@@ -86,30 +89,29 @@ export function Navbar() {
           style={{
             fontFamily:    "'Nunito', sans-serif",
             fontWeight:    700,
-            fontSize:      'clamp(1.35rem, 2.2vw, 1.65rem)',
+            fontSize:      'clamp(1.35rem, 2.5vw, 1.7rem)',
             letterSpacing: '0.04em',
             color:         'rgba(201, 169, 110, 0.85)',
             transition:    'color 0.4s ease',
             lineHeight:    1,
-            flexShrink:    0,
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(212, 170, 122, 1)' }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#D4AA7A' }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(201, 169, 110, 0.85)' }}
         >
           hālo
         </Link>
 
-        {/* Desktop navigation — centred */}
+        {/* Desktop navigation — absolutely centred */}
         <nav
           role="navigation"
           aria-label="Main navigation"
           style={{
-            position:       'absolute',
-            left:           '50%',
-            transform:      'translateX(-50%)',
-            display:        'flex',
-            alignItems:     'center',
-            gap:            'clamp(2rem, 4vw, 3.5rem)',
+            position:   'absolute',
+            left:       '50%',
+            transform:  'translateX(-50%)',
+            display:    'flex',
+            alignItems: 'center',
+            gap:        'clamp(2rem, 3.5vw, 3.5rem)',
           }}
           className="hidden md:flex"
         >
@@ -121,10 +123,12 @@ export function Navbar() {
                 href={href}
                 className="t-nav"
                 style={{
-                  color:         active ? 'rgba(212, 170, 122, 0.9)' : undefined,
+                  color: active
+                    ? 'rgba(212, 170, 122, 0.9)'
+                    : undefined,
                   paddingBottom: '2px',
-                  borderBottom:  active
-                    ? '1px solid rgba(201, 169, 110, 0.45)'
+                  borderBottom: active
+                    ? '1px solid rgba(201, 169, 110, 0.4)'
                     : '1px solid transparent',
                 }}
                 aria-current={active ? 'page' : undefined}
@@ -135,54 +139,48 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right — spacer on desktop keeps logo left, hamburger on mobile */}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            className="flex md:hidden"
-            onClick={() => setOpen(p => !p)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            style={{
-              flexDirection:  'column',
-              alignItems:     'center',
-              justifyContent: 'center',
-              gap:            '5px',
-              width:          '44px',
-              height:         '44px',
-              padding:        '8px',
-            }}
-          >
-            {[0, 1, 2].map(i => (
-              <span
-                key={i}
-                style={{
-                  display:         'block',
-                  width:           '22px',
-                  height:          '1px',
-                  backgroundColor: 'rgba(237, 232, 226, 0.8)',
-                  transformOrigin: 'center',
-                  transition:      'all 0.4s cubic-bezier(0.25,0.1,0,1)',
-                  transform:       open
-                    ? i === 0 ? 'rotate(45deg) translateY(6px)'
-                    : i === 1 ? 'scaleX(0)'
-                    : 'rotate(-45deg) translateY(-6px)'
-                    : 'none',
-                  opacity: open && i === 1 ? 0 : 1,
-                }}
-              />
-            ))}
-          </button>
-
-          {/* Desktop — bordered dropdown trigger hint (matches mockup top-right box) */}
-          {/* The bordered panel in the mockup is actually the open mobile/overlay menu — rendered below */}
-        </div>
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          className="md:hidden"
+          onClick={() => setOpen(p => !p)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          style={{
+            display:        'flex',
+            flexDirection:  'column',
+            alignItems:     'center',
+            justifyContent: 'center',
+            gap:            '5px',
+            width:          '44px',
+            height:         '44px',
+            padding:        '8px',
+          }}
+        >
+          {[0, 1, 2].map(i => (
+            <span
+              key={i}
+              style={{
+                display:         'block',
+                width:           '22px',
+                height:          '1px',
+                backgroundColor: 'rgba(237, 232, 226, 0.75)',
+                transformOrigin: 'center',
+                transition:      'all 0.4s cubic-bezier(0.25,0.1,0,1)',
+                transform: open
+                  ? i === 0 ? 'rotate(45deg) translateY(6px)'
+                  : i === 1 ? 'scaleX(0) opacity(0)'
+                  : 'rotate(-45deg) translateY(-6px)'
+                  : 'none',
+                opacity: open && i === 1 ? 0 : 1,
+              }}
+            />
+          ))}
+        </button>
       </header>
 
-      {/* ── MOBILE / OVERLAY MENU ─────────────────────────────── */}
-      {/* Matches the mockup's bordered right-hand panel */}
+      {/* ── MOBILE MENU ───────────────────────────────────────── */}
       <div
         id="mobile-nav"
         ref={menuRef}
@@ -197,7 +195,7 @@ export function Navbar() {
           right:           0,
           bottom:          0,
           zIndex:          8999,
-          backgroundColor: 'rgba(10, 9, 8, 0.98)',
+          backgroundColor: 'rgba(14, 12, 10, 0.98)',
           display:         'flex',
           flexDirection:   'column',
           alignItems:      'center',
@@ -208,54 +206,33 @@ export function Navbar() {
           transition:      'opacity 0.5s ease',
         }}
       >
-        {/* Bordered panel — replicates the mockup's right-side box */}
-        <div
-          style={{
-            border:        '1px solid rgba(255,255,255,0.1)',
-            padding:       '2.5rem 3rem',
-            display:       'flex',
-            flexDirection: 'column',
-            gap:           '0.25rem',
-            minWidth:      '240px',
-          }}
-        >
-          {LINKS.map(({ label, href }, i) => {
-            const active = pathname === href
-            return (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setOpen(false)}
-                aria-current={active ? 'page' : undefined}
-                style={{
-                  fontFamily:    "'DM Sans', sans-serif",
-                  fontWeight:    300,
-                  fontSize:      '0.7rem',
-                  letterSpacing: '0.25em',
-                  textTransform: 'uppercase',
-                  color:         active
-                    ? 'rgba(212, 170, 122, 0.95)'
-                    : 'rgba(237, 232, 226, 0.65)',
-                  lineHeight:    1,
-                  padding:       '1rem 0',
-                  borderBottom:  i < LINKS.length - 1
-                    ? '1px solid rgba(255,255,255,0.05)'
-                    : 'none',
-                  transition:    `color 0.35s ease, opacity 0.5s ease ${i * 0.06}s`,
-                  opacity:       open ? 1 : 0,
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(237, 232, 226, 0.9)' }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.color = active
-                    ? 'rgba(212, 170, 122, 0.95)'
-                    : 'rgba(237, 232, 226, 0.65)'
-                }}
-              >
-                {label}
-              </Link>
-            )
-          })}
-        </div>
+        {LINKS.map(({ label, href }, i) => {
+          const active = pathname === href
+          return (
+            <Link
+              key={href}
+              href={href}
+              onClick={() => setOpen(false)}
+              aria-current={active ? 'page' : undefined}
+              style={{
+                fontFamily:    "'Cormorant Garamond', serif",
+                fontWeight:    200,
+                fontSize:      'clamp(2.2rem, 8vw, 3.5rem)',
+                letterSpacing: '-0.02em',
+                color:         active
+                  ? 'rgba(212, 170, 122, 0.9)'
+                  : 'rgba(237, 232, 226, 0.72)',
+                lineHeight:    1.1,
+                padding:       '0.6rem 2rem',
+                transition:    `color 0.4s ease, opacity 0.6s ease ${i * 0.06}s`,
+                opacity:       open ? 1 : 0,
+                transform:     open ? 'translateY(0)' : 'translateY(10px)',
+              }}
+            >
+              {label}
+            </Link>
+          )
+        })}
 
         {/* Tagline */}
         <p
@@ -263,11 +240,11 @@ export function Navbar() {
             position:      'absolute',
             bottom:        '2.5rem',
             fontFamily:    "'DM Sans', sans-serif",
-            fontSize:      '0.56rem',
+            fontSize:      '0.58rem',
             fontWeight:    300,
             letterSpacing: '0.34em',
             textTransform: 'uppercase',
-            color:         'rgba(237, 232, 226, 0.18)',
+            color:         'rgba(237, 232, 226, 0.2)',
             opacity:       open ? 1 : 0,
             transition:    'opacity 0.8s ease 0.4s',
           }}
@@ -275,9 +252,6 @@ export function Navbar() {
           the art of radiance
         </p>
       </div>
-
-      {/* Desktop overlay menu — bordered panel top-right (matches mockup) */}
-      {/* This appears when hamburger equiv is triggered on desktop — handled by open state above */}
 
       {/* Spacer */}
       <div style={{ height: 'var(--nav-h)' }} aria-hidden="true" />
