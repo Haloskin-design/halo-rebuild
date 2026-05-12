@@ -1,0 +1,228 @@
+/* ─────────────────────────────────────────────────────────────
+   hālo · globals.css  — refined to match approved mockup
+   ───────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Nunito:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Custom Properties ─────────────────────────────────── */
+:root {
+  /* Layout */
+  --nav-h:        76px;
+  --nav-h-sm:     60px;
+
+  /* Brand palette */
+  --ink:          #0E0C0A;
+  --espresso:     #181513;
+  --mocha:        #211D1A;
+  --charcoal:     #2B2622;
+  --taupe:        #5C5248;
+  --mink:         #8A7B6E;
+  --stone:        #B0A396;
+  --parchment:    #D8D0C6;
+  --ivory:        #EDE8E2;
+  --bronze:       #8A684E;
+  --caramel:      #B88A5A;
+  --sand:         #D4AA7A;
+  --gold:         #C9A96E;
+
+  /* Typography tokens */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-logo:    'Nunito', sans-serif;
+}
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--espresso);
+  color: var(--ivory);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: rgba(201, 169, 110, 0.25);
+  color: var(--ivory);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar         { width: 3px; }
+::-webkit-scrollbar-track   { background: var(--ink); }
+::-webkit-scrollbar-thumb   { background: rgba(201, 169, 110, 0.3); border-radius: 2px; }
+
+/* ── Typography Base ────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  color: rgba(237, 232, 226, 0.95);
+}
+
+p {
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ── Keyframes ──────────────────────────────────────────────── */
+@keyframes kenBurns {
+  from { transform: scale(1.04) translate(0%, 0%); }
+  to   { transform: scale(1.00) translate(-0.5%, 0.5%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Button Utilities ───────────────────────────────────────── */
+
+/* Primary — outlined white */
+.btn-primary {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  font-family:    var(--font-sans);
+  font-size:      0.65rem;
+  font-weight:    400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color:          rgba(237, 232, 226, 0.9);
+  border:         1px solid rgba(237, 232, 226, 0.55);
+  padding:        0.85rem 2rem;
+  transition:     border-color 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+  white-space:    nowrap;
+}
+.btn-primary:hover {
+  border-color:     rgba(237, 232, 226, 0.9);
+  background-color: rgba(237, 232, 226, 0.06);
+  color:            rgba(237, 232, 226, 1);
+}
+
+/* Secondary — outlined gold */
+.btn-secondary {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  font-family:    var(--font-sans);
+  font-size:      0.65rem;
+  font-weight:    400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color:          rgba(237, 232, 226, 0.9);
+  border:         1px solid rgba(201, 169, 110, 0.5);
+  padding:        0.85rem 2rem;
+  transition:     border-color 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+  white-space:    nowrap;
+}
+.btn-secondary:hover {
+  border-color:     rgba(201, 169, 110, 0.9);
+  background-color: rgba(201, 169, 110, 0.08);
+  color:            rgba(212, 170, 122, 1);
+}
+
+/* Text link CTA */
+.btn-link {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            0.5rem;
+  font-family:    var(--font-sans);
+  font-size:      0.65rem;
+  font-weight:    300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color:          rgba(212, 170, 122, 0.75);
+  transition:     color 0.4s ease;
+}
+.btn-link:hover { color: rgba(212, 170, 122, 1); }
+
+/* ── Nav Link ───────────────────────────────────────────────── */
+.t-nav {
+  font-family:    var(--font-sans);
+  font-size:      0.62rem;
+  font-weight:    400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color:          rgba(237, 232, 226, 0.65);
+  transition:     color 0.4s ease;
+  white-space:    nowrap;
+}
+.t-nav:hover { color: rgba(237, 232, 226, 0.95); }
+
+/* ── Eyebrow ────────────────────────────────────────────────── */
+.t-eyebrow {
+  font-family:    var(--font-sans);
+  font-size:      0.58rem;
+  font-weight:    300;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color:          rgba(212, 170, 122, 0.7);
+}
+
+/* ── Panel hover ────────────────────────────────────────────── */
+a:hover .panel-img {
+  filter:    grayscale(0%) contrast(1.0) brightness(0.6) !important;
+  transform: scale(1.03) !important;
+}
+
+/* ── Footer & link hovers ───────────────────────────────────── */
+.footer-link:hover { color: rgba(212, 170, 122, 0.8) !important; }
+.footer-logo:hover { color: rgba(212, 170, 122, 1)   !important; }
+
+/* ── Newsletter input ───────────────────────────────────────── */
+.newsletter-input {
+  background:   transparent;
+  border:       none;
+  border-bottom: 1px solid rgba(237, 232, 226, 0.2);
+  outline:      none;
+  font-family:  var(--font-sans);
+  font-size:    0.78rem;
+  font-weight:  300;
+  color:        rgba(237, 232, 226, 0.65);
+  width:        100%;
+  padding:      0.5rem 0;
+  transition:   border-color 0.4s ease;
+}
+.newsletter-input::placeholder { color: rgba(237, 232, 226, 0.3); }
+.newsletter-input:focus        { border-bottom-color: rgba(201, 169, 110, 0.55); }
+
+/* ── Responsive nav height ──────────────────────────────────── */
+@media (max-width: 640px) {
+  :root { --nav-h: 60px; }
+}
