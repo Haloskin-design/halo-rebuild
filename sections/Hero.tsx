@@ -30,7 +30,7 @@ export function Hero({
       style={{
         position:   'relative',
         width:      '100%',
-        height:     'calc(100svh - var(--nav-h))',
+        height:     height: '78svh',
         minHeight:  '520px',
         maxHeight:  '900px',
         display:    'flex',
