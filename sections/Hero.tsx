@@ -55,7 +55,7 @@ export function Hero({
           priority
           sizes="100vw"
           style={{
-            objectFit:      'cover',
+            objectFit: 'contain',
             objectPosition: objectPosition,
             filter:         'sepia(0.7) brightness(0.30) contrast(1.05)',
             animation:      'none',
