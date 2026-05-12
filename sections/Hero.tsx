@@ -8,6 +8,7 @@ interface HeroProps {
   eyebrow?:        string
   headingLine1?:   string
   headingLine2?:   string
+  headingLine3?:   string
   sub?:            string
   showCtas?:       boolean
 }
@@ -15,11 +16,12 @@ interface HeroProps {
 export function Hero({
   imageSrc,
   imageAlt         = 'hālo skincare',
-  objectPosition   = 'center 20%',
-  eyebrow          = 'him & her · the art of radiance',
+  objectPosition   = 'center 96%',
+  eyebrow          = 'the art of radiance',
   headingLine1     = 'skincare that works.',
-  headingLine2     = 'structured for individuality.',
-  sub              = 'vegan · cruelty free · made sustainably in the uk',
+  headingLine2     = 'enhancing what is',
+  headingLine3     = 'already yours.',
+  sub              = 'Vegan  ·  Cruelty free  ·  Made sustainably in the UK',
   showCtas         = true,
 }: HeroProps) {
   return (
@@ -55,7 +57,7 @@ export function Hero({
           style={{
             objectFit:      'cover',
             objectPosition: objectPosition,
-            filter:         'grayscale(100%) contrast(1.06) brightness(0.38)',
+            filter:         'sepia(0.7) brightness(0.30) contrast(1.05)',
             animation:      'kenBurns 22s ease-in-out infinite alternate',
           }}
         />
@@ -70,8 +72,8 @@ export function Hero({
           inset:         0,
           pointerEvents: 'none',
           background: [
-            'linear-gradient(to top, rgba(24,21,19,1) 0%, rgba(24,21,19,0.88) 18%, rgba(24,21,19,0.3) 45%, transparent 70%)',
-            'radial-gradient(ellipse 90% 70% at 50% 80%, rgba(14,12,10,0.6) 0%, transparent 70%)',
+            'linear-gradient(to right, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.6) 38%, rgba(10,8,6,0.08) 62%, transparent 100%)',
+            'linear-gradient(to top, rgba(10,8,6,0.55) 0%, transparent 38%)',
           ].join(', '),
         }}
       />
@@ -90,58 +92,39 @@ export function Hero({
         <div style={{ maxWidth: '640px' }}>
 
           {/* Eyebrow */}
-          <div
+          <p
             style={{
-              display:       'inline-flex',
-              alignItems:    'center',
-              gap:           '0.75rem',
+              fontFamily:    "'DM Sans', sans-serif",
+              fontSize:      '0.58rem',
+              fontWeight:    300,
+              letterSpacing: '0.34em',
+              textTransform: 'uppercase',
+              color:         'rgba(212, 170, 122, 0.8)',
               marginBottom:  '1.5rem',
             }}
           >
-            <span
-              style={{
-                display:         'block',
-                width:           '2rem',
-                height:          '1px',
-                backgroundColor: 'rgba(201, 169, 110, 0.5)',
-              }}
-              aria-hidden="true"
-            />
-            <span
-              style={{
-                fontFamily:    "'DM Sans', sans-serif",
-                fontSize:      '0.58rem',
-                fontWeight:    300,
-                letterSpacing: '0.34em',
-                textTransform: 'uppercase',
-                color:         'rgba(212, 170, 122, 0.7)',
-              }}
-            >
-              {eyebrow}
-            </span>
-          </div>
+            {eyebrow}
+          </p>
 
           {/* Headline */}
           <h1
             style={{
               fontFamily:    "'Cormorant Garamond', Georgia, serif",
-              fontWeight:    200,
-              lineHeight:    0.92,
-              letterSpacing: '-0.03em',
-              fontSize:      'clamp(2.6rem, 5.5vw, 5.2rem)',
-              color:         'rgba(237, 232, 226, 0.95)',
-              marginBottom:  '1.25rem',
+              fontWeight:    300,
+              lineHeight:    1.02,
+              letterSpacing: '-0.02em',
+              fontSize:      'clamp(2.6rem, 5vw, 4.8rem)',
+              marginBottom:  '1.4rem',
             }}
           >
-            {headingLine1}
-            <br />
-            <em
-              style={{
-                fontStyle: 'italic',
-                color:     'rgba(237, 232, 226, 0.45)',
-              }}
-            >
+            <span style={{ color: 'rgba(237, 232, 226, 0.95)', display: 'block' }}>
+              {headingLine1}
+            </span>
+            <em style={{ fontStyle: 'italic', color: 'rgba(237, 232, 226, 0.88)', display: 'block' }}>
               {headingLine2}
+            </em>
+            <em style={{ fontStyle: 'italic', color: 'rgba(201, 169, 110, 0.92)', display: 'block' }}>
+              {headingLine3}
             </em>
           </h1>
 
@@ -177,13 +160,11 @@ export function Hero({
                 shop him
               </Link>
               <Link
-                href="/film.html"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/story"
                 className="btn-link"
               >
                 <span aria-hidden="true" style={{ fontSize: '0.6rem' }}>▶</span>
-                watch our story
+                discover our story
               </Link>
             </div>
           )}
