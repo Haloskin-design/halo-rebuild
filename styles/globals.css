@@ -372,20 +372,20 @@
   /* Image with cinematic treatment */
   .img-cinematic {
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.05) brightness(0.5);
+    filter: sepia(0.7) contrast(1.05) brightness(0.55);
     transition: filter 0.8s var(--ease-luxury);
   }
 
   /* Reveal colour on hover (product cards) */
   .group:hover .img-reveal {
-    filter: grayscale(0%) contrast(1.0) brightness(0.72);
+    filter: sepia(0.3) contrast(1.0) brightness(0.72);
   }
 
-  /* Hero image — conserve composition, prevent face crops */
+  /* Hero image — warm cinematic, face visible */
   .img-hero {
     object-fit: cover;
-    object-position: center 20%;
-    filter: grayscale(100%) contrast(1.06) brightness(0.38);
+    object-position: center 96%;
+    filter: sepia(0.7) contrast(1.05) brightness(0.30);
     animation: kenBurns 22s ease-in-out infinite alternate;
   }
 }
@@ -486,14 +486,14 @@
     height: 100%;
     object-fit: cover;
     object-position: center 15%;
-    filter: grayscale(100%) contrast(1.04) brightness(0.58);
+    filter: sepia(0.6) contrast(1.04) brightness(0.58);
     transition:
       filter 0.8s var(--ease-luxury),
       transform 0.9s var(--ease-luxury);
   }
 
   .product-card:hover .product-card__image img {
-    filter: grayscale(0%) contrast(1.0) brightness(0.68);
+    filter: sepia(0.2) contrast(1.0) brightness(0.72);
     transform: scale(1.03);
   }
 
