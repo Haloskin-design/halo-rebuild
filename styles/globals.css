@@ -1,0 +1,526 @@
+/* =============================================================
+   hālo skincare — globals.css
+   Premium luxury ecommerce design system
+   ============================================================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts — loaded once, globally */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Nunito:wght@600;700;800&display=swap');
+
+/* =============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================= */
+:root {
+  /* Colour palette */
+  --ink:         #0E0C0A;
+  --espresso:    #181513;
+  --mocha:       #211D1A;
+  --charcoal:    #2B2622;
+  --warm-dark:   #332C27;
+  --taupe:       #5C5248;
+  --mink:        #8A7B6E;
+  --stone:       #B0A396;
+  --parchment:   #D8D0C6;
+  --ivory:       #EDE8E2;
+  --bronze:      #8A684E;
+  --caramel:     #B88A5A;
+  --sand:        #D4AA7A;
+  --gold:        #C9A96E;
+
+  /* Semantic tokens */
+  --bg:          var(--espresso);
+  --bg-raise:    var(--mocha);
+  --bg-card:     var(--charcoal);
+  --text:        var(--ivory);
+  --text-dim:    var(--stone);
+  --text-muted:  var(--taupe);
+  --accent:      var(--gold);
+  --accent-dim:  var(--caramel);
+  --rule:        rgba(255, 255, 255, 0.06);
+  --rule-warm:   rgba(201, 169, 110, 0.14);
+
+  /* Spacing */
+  --nav-h:       76px;
+  --nav-h-sm:    60px;
+  --site-pad:    clamp(1.5rem, 5vw, 5rem);
+  --section-gap: clamp(5rem, 10vw, 10rem);
+
+  /* Z-index scale */
+  --z-below:   -1;
+  --z-base:    1;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-modal:   1000;
+  --z-nav:     9000;
+  --z-top:     9999;
+
+  /* Easing */
+  --ease-luxury: cubic-bezier(0.25, 0.1, 0.0, 1.0);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-fade:   cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =============================================================
+   BASE RESET
+   ============================================================= */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--espresso);
+    color: var(--ivory);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    overflow-x: hidden;
+    min-height: 100dvh;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(201, 169, 110, 0.22);
+    color: var(--ivory);
+  }
+
+  /* Focus ring — luxury style */
+  :focus-visible {
+    outline: 1px solid rgba(201, 169, 110, 0.5);
+    outline-offset: 3px;
+  }
+
+  /* Images — never pointer-interact as backgrounds */
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Links */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Buttons */
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  /* Global tap highlight removal */
+  a, button, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar        { width: 3px; }
+  ::-webkit-scrollbar-track  { background: var(--espresso); }
+  ::-webkit-scrollbar-thumb  { background: var(--taupe); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--stone); }
+}
+
+/* =============================================================
+   TYPOGRAPHY SYSTEM
+   ============================================================= */
+@layer components {
+  /* Display serif — Cormorant Garamond */
+  .t-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 200;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+
+  .t-display-italic {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 200;
+    font-style: italic;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+
+  /* Logo mark */
+  .t-logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  /* Eyebrow / label */
+  .t-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--caramel);
+  }
+
+  /* Navigation */
+  .t-nav {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(237, 232, 226, 0.65);
+    transition: color 0.4s var(--ease-luxury);
+  }
+
+  .t-nav:hover { color: var(--ivory); }
+
+  /* Body text */
+  .t-body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(237, 232, 226, 0.62);
+  }
+
+  /* Small caps label */
+  .t-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(237, 232, 226, 0.4);
+  }
+
+  /* Price */
+  .t-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+    color: var(--parchment);
+  }
+}
+
+/* =============================================================
+   LAYOUT UTILITIES
+   ============================================================= */
+@layer components {
+  /* Site-wide container */
+  .container-site {
+    width: 100%;
+    max-width: var(--max-w, 1480px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--site-pad);
+    padding-right: var(--site-pad);
+  }
+
+  /* Content container — slightly narrower */
+  .container-content {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--site-pad);
+    padding-right: var(--site-pad);
+  }
+
+  /* Section spacing */
+  .section-gap {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+
+  /* Horizontal rule */
+  .rule { border-color: var(--rule); }
+  .rule-warm { border-color: var(--rule-warm); }
+}
+
+/* =============================================================
+   BUTTON SYSTEM
+   ============================================================= */
+@layer components {
+  /* Primary ghost button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    border: 1px solid rgba(237, 232, 226, 0.3);
+    background: transparent;
+    transition:
+      color 0.5s var(--ease-luxury),
+      border-color 0.5s var(--ease-luxury),
+      background 0.5s var(--ease-luxury);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    color: var(--espresso);
+    background: var(--parchment);
+    border-color: var(--parchment);
+  }
+
+  /* Secondary — more subtle */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(237, 232, 226, 0.55);
+    border: 1px solid rgba(237, 232, 226, 0.12);
+    background: transparent;
+    transition:
+      color 0.5s var(--ease-luxury),
+      border-color 0.5s var(--ease-luxury);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn-secondary:hover {
+    color: var(--parchment);
+    border-color: rgba(237, 232, 226, 0.3);
+  }
+
+  /* Text link button */
+  .btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.4s var(--ease-luxury);
+  }
+
+  .btn-link:hover { color: var(--sand); }
+
+  /* Add to bag */
+  .btn-bag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--espresso);
+    background: var(--parchment);
+    border: 1px solid var(--parchment);
+    cursor: pointer;
+    transition:
+      background 0.5s var(--ease-luxury),
+      color 0.5s var(--ease-luxury),
+      border-color 0.5s var(--ease-luxury);
+  }
+
+  .btn-bag:hover {
+    background: var(--ivory);
+    border-color: var(--ivory);
+  }
+}
+
+/* =============================================================
+   IMAGE SYSTEM
+   ============================================================= */
+@layer components {
+  /* Never block pointer events on image overlays */
+  .img-layer {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Image with cinematic treatment */
+  .img-cinematic {
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.05) brightness(0.5);
+    transition: filter 0.8s var(--ease-luxury);
+  }
+
+  /* Reveal colour on hover (product cards) */
+  .group:hover .img-reveal {
+    filter: grayscale(0%) contrast(1.0) brightness(0.72);
+  }
+
+  /* Hero image — conserve composition, prevent face crops */
+  .img-hero {
+    object-fit: cover;
+    object-position: center 20%;
+    filter: grayscale(100%) contrast(1.06) brightness(0.38);
+    animation: kenBurns 22s ease-in-out infinite alternate;
+  }
+}
+
+/* =============================================================
+   FORM ELEMENTS
+   ============================================================= */
+@layer components {
+  .input-luxury {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.875rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--ivory);
+    transition: border-color 0.4s var(--ease-luxury);
+    outline: none;
+  }
+
+  .input-luxury::placeholder {
+    color: rgba(237, 232, 226, 0.22);
+    font-style: italic;
+  }
+
+  .input-luxury:focus {
+    border-bottom-color: rgba(201, 169, 110, 0.45);
+  }
+
+  .label-luxury {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(237, 232, 226, 0.38);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+}
+
+/* =============================================================
+   ANIMATION REVEAL SYSTEM
+   ============================================================= */
+@layer components {
+  /* Elements animate in when .visible class added */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.9s var(--ease-reveal),
+      transform 0.9s var(--ease-reveal);
+  }
+
+  [data-reveal].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-reveal][data-delay="100"] { transition-delay: 0.1s; }
+  [data-reveal][data-delay="200"] { transition-delay: 0.2s; }
+  [data-reveal][data-delay="300"] { transition-delay: 0.3s; }
+  [data-reveal][data-delay="400"] { transition-delay: 0.4s; }
+  [data-reveal][data-delay="500"] { transition-delay: 0.5s; }
+  [data-reveal][data-delay="600"] { transition-delay: 0.6s; }
+}
+
+/* =============================================================
+   PAGE TRANSITION
+   ============================================================= */
+@layer components {
+  .page-enter {
+    animation: fadeIn 0.6s var(--ease-fade) forwards;
+  }
+}
+
+/* =============================================================
+   PRODUCT CARD
+   ============================================================= */
+@layer components {
+  .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .product-card__image {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+
+  .product-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    filter: grayscale(100%) contrast(1.04) brightness(0.58);
+    transition:
+      filter 0.8s var(--ease-luxury),
+      transform 0.9s var(--ease-luxury);
+  }
+
+  .product-card:hover .product-card__image img {
+    filter: grayscale(0%) contrast(1.0) brightness(0.68);
+    transform: scale(1.03);
+  }
+
+  .product-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(14, 12, 10, 0.7), transparent);
+    pointer-events: none;
+  }
+}
+
+/* =============================================================
+   SCROLLBAR & MISC
+   ============================================================= */
+@layer utilities {
+  /* Full bleed within container */
+  .bleed { margin-left: calc(var(--site-pad) * -1); margin-right: calc(var(--site-pad) * -1); }
+
+  /* Hide scrollbar visually but keep function */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Prevent layout shift */
+  .aspect-portrait  { aspect-ratio: 3 / 4; }
+  .aspect-landscape { aspect-ratio: 4 / 3; }
+  .aspect-cinematic { aspect-ratio: 21 / 9; }
+}
