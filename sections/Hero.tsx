@@ -58,7 +58,7 @@ export function Hero({
             objectFit:      'cover',
             objectPosition: objectPosition,
             filter:         'sepia(0.7) brightness(0.30) contrast(1.05)',
-            animation:      'kenBurns 22s ease-in-out infinite alternate',
+            animation:      'none',
           }}
         />
       </div>
