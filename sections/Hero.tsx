@@ -32,7 +32,7 @@ export function Hero({
         width:      '100%',
         height:     height: '78svh',
         minHeight:  '520px',
-        maxHeight:  '900px',
+        maxHeight:  '760px',
         display:    'flex',
         alignItems: 'flex-end',
         overflow:   'hidden',
