@@ -38,31 +38,7 @@ export function Hero({
         overflow:   'hidden',
       }}
     >
-      {/* ── BACKGROUND IMAGE ─────────────────────────────────── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position:      'absolute',
-          inset:         0,
-          pointerEvents: 'none',
-          userSelect:    'none',
-        }}>
       
-        <Image
-          src={imageSrc}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-            objectPosition: objectPosition,
-            filter:         'sepia(0.7) brightness(0.30) contrast(1.05)',
-            animation:      'none',
-          }}
-        />
-      </div>
-
       {/* ── GRADIENT OVERLAYS ──────────────────────────────────── */}
       {/* Bottom gradient — guarantees text legibility */}
       <div
@@ -80,15 +56,19 @@ export function Hero({
 
       {/* ── CONTENT ────────────────────────────────────────────── */}
       <div
-        style={{
-          position:     'relative',
-          zIndex:       2,
-          width:        '100%',
-          paddingLeft:  'clamp(1.5rem, 5vw, 5rem)',
-          paddingRight: 'clamp(1.5rem, 5vw, 5rem)',
-          paddingBottom: 'clamp(3rem, 6vw, 5.5rem)',
-        }}
-      >
+  style={{
+    position: 'relative',
+    zIndex: 2,
+    width: '100%',
+    height: '100%',
+    display: 'grid',
+    gridTemplateColumns: '48% 52%',
+    alignItems: 'center',
+    paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
+    paddingRight: 'clamp(1.5rem, 5vw, 5rem)',
+    gap: 'clamp(2rem, 4vw, 5rem)',
+  }}
+>
         <div style={{ maxWidth: '640px' }}>
 
           {/* Eyebrow */}
@@ -169,7 +149,28 @@ export function Hero({
             </div>
           )}
         </div>
-
+<div
+  style={{
+    position: 'relative',
+    width: '100%',
+    height: '78%',
+    borderRadius: '28px',
+    overflow: 'hidden',
+  }}
+>
+  <Image
+    src={imageSrc}
+    alt={imageAlt}
+    fill
+    priority
+    sizes="50vw"
+    style={{
+      objectFit: 'cover',
+      objectPosition: 'center top',
+      filter: 'sepia(0.18) brightness(0.92)',
+    }}
+  />
+</div>
         {/* Decorative vertical text — desktop only */}
         <div
           aria-hidden="true"
