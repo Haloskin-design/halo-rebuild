@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <>
+  
       <Hero
         imageSrc="/images/home_hero.webp"
         objectPosition="center 96%"
