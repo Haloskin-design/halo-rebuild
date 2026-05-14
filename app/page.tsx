@@ -21,8 +21,8 @@ export default function HomePage() {
         headingLine3="already yours."
         
         sub="Vegan - Cruelty free - Made sustainably in the UK"
-        showCtas
-         />
+        showCtas={true} />
+        
 
       {/* ── SPLIT PANELS ──────────────────────────────────────── */}
       <section
