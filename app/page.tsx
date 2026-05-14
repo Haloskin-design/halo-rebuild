@@ -20,10 +20,9 @@ export default function HomePage() {
         headingLine2="enhancing what is"
         headingLine3="already yours."
         
-        sub="Vegan  ·  Cruelty free  ·  Made sustainably in the UK"
-        
+        sub="Vegan - Cruelty free - Made sustainably in the UK"
         showCtas
-      />
+         />
 
       {/* ── SPLIT PANELS ──────────────────────────────────────── */}
       <section
@@ -33,7 +32,7 @@ export default function HomePage() {
           gridTemplateColumns: '1fr 1fr',
           height:              'clamp(420px, 55vw, 680px)',
         }}
-        className="grid-cols-1 sm:!grid-cols-2"
+        className="grid grid-cols-1 sm:grid-cols-2"
       >
         {/* Her */}
         <Link
