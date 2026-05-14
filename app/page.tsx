@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Hero } from '@/sections/Hero'
 import { Footer } from '@/components/ui/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,40 +10,152 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-  
-     <Hero
-  imageSrc="/images/home_hero.webp"
-  objectPosition="center 96%"
-  eyebrow="the art of radiance"
-  headingLine1="skincare that works."
-  headingLine2="enhancing what is"
-  headingLine3="already yours."
-  sub="Vegan — Cruelty free — Made sustainably in the UK"
-  showCtas={true}
-/>
-        
+    <>
 
-      {/* ── SPLIT PANELS ──────────────────────────────────────── */}
+      {/* ── HERO ─────────────────────────────────────────────────
+          Two explicit columns. Image is clipped to right column only.
+          No viewport-height. No fullscreen bleed.
+          At 1440px: each column = 720px wide, 518px tall.
+          Face (row 1044 of 1600px source) at 43% from top of column.
+      ──────────────────────────────────────────────────────── */}
+      <section
+        aria-label="Hero"
+        style={{
+          display:             'grid',
+          gridTemplateColumns: '1fr 1fr',
+          width:               '100%',
+          overflow:            'hidden',
+        }}
+        className="grid-cols-1 md:grid-cols-2"
+      >
+
+        {/* Left: text column — solid dark background */}
+        <div style={{
+          display:         'flex',
+          flexDirection:   'column',
+          justifyContent:  'flex-end',
+          padding:         'clamp(2rem, 4.5vw, 4.5rem)',
+          paddingBottom:   'clamp(2.5rem, 5vw, 4.5rem)',
+          backgroundColor: '#181513',
+          minHeight:       'clamp(400px, 36vw, 560px)',
+        }}>
+          <p style={{
+            fontFamily:    "'DM Sans', sans-serif",
+            fontSize:      '0.57rem',
+            fontWeight:    300,
+            letterSpacing: '0.34em',
+            textTransform: 'uppercase',
+            color:         'rgba(212,170,122,0.8)',
+            marginBottom:  '1.25rem',
+          }}>
+            the art of radiance
+          </p>
+
+          <h1 style={{
+            fontFamily:    "'Cormorant Garamond', Georgia, serif",
+            fontWeight:    300,
+            lineHeight:    1.04,
+            letterSpacing: '-0.02em',
+            fontSize:      'clamp(1.9rem, 3.2vw, 3.8rem)',
+            marginBottom:  '1.25rem',
+          }}>
+            <span style={{ color: 'rgba(237,232,226,0.95)', display: 'block' }}>
+              skincare that works.
+            </span>
+            <em style={{ fontStyle: 'italic', color: 'rgba(237,232,226,0.82)', display: 'block' }}>
+              enhancing what is
+            </em>
+            <em style={{ fontStyle: 'italic', color: 'rgba(201,169,110,0.92)', display: 'block' }}>
+              already yours.
+            </em>
+          </h1>
+
+          <p style={{
+            fontFamily:    "'DM Sans', sans-serif",
+            fontSize:      '0.74rem',
+            fontWeight:    300,
+            letterSpacing: '0.06em',
+            color:         'rgba(237,232,226,0.4)',
+            marginBottom:  '2.25rem',
+          }}>
+            Vegan  ·  Cruelty free  ·  Made sustainably in the UK
+          </p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+            <Link href="/her" className="btn-primary">shop her</Link>
+            <Link href="/him" className="btn-secondary">shop him</Link>
+            <Link href="/story" className="btn-link" style={{ marginLeft: '0.5rem' }}>
+              <span aria-hidden="true" style={{ fontSize: '0.5rem' }}>▶</span>
+              discover our story
+            </Link>
+          </div>
+        </div>
+
+        {/* Right: portrait image — hard-clipped to this column
+            Source: home_hero.webp 1200×1600
+            Face at row 1044 (65%). Container ~518px tall.
+            objectPosition center 76% → face lands at 43% from top. */}
+        <div
+          style={{
+            position:        'relative',
+            overflow:        'hidden',
+            minHeight:       'clamp(400px, 36vw, 560px)',
+            backgroundColor: '#0e0c0a',
+          }}
+          className="hidden md:block"
+        >
+          <Image
+            src="/images/home_hero.webp"
+            alt="hālo skincare — the art of radiance"
+            fill
+            priority
+            sizes="50vw"
+            style={{
+              objectFit:      'cover',
+              objectPosition: 'center 76%',
+              filter:         'sepia(0.65) brightness(0.55) contrast(1.05)',
+            }}
+          />
+          <div aria-hidden="true" style={{
+            position:      'absolute',
+            inset:         0,
+            pointerEvents: 'none',
+            background:    'linear-gradient(to right, rgba(24,21,19,0.22) 0%, transparent 25%)',
+          }} />
+        </div>
+      </section>
+
+      {/* ── PANELS ───────────────────────────────────────────────
+          Two portrait image columns. Text anchored bottom-left.
+          At 1440px: each column = 720px wide, 403px tall.
+          No fullscreen bleed. Images clipped by overflow:hidden.
+      ──────────────────────────────────────────────────────── */}
       <section
         aria-label="Shop by category"
         style={{
           display:             'grid',
           gridTemplateColumns: '1fr 1fr',
-          height:              'clamp(420px, 55vw, 680px)',
+          width:               '100%',
         }}
-        className="grid grid-cols-1 sm:grid-cols-2"
+        className="grid-cols-1 sm:grid-cols-2"
       >
-        {/* Her */}
+
+        {/* HER
+            Source: her_hero.jpg 1200×1920, face at row 936 (49%)
+            Container 403px. objectPosition center 50% → face at 45% from top */}
         <Link
           href="/her"
           style={{
-            position:   'relative',
-            overflow:   'hidden',
-            display:    'flex',
-            alignItems: 'flex-end',
-            cursor:     'pointer',
+            position:        'relative',
+            overflow:        'hidden',
+            display:         'flex',
+            flexDirection:   'column',
+            justifyContent:  'flex-end',
+            minHeight:       'clamp(300px, 28vw, 440px)',
+            backgroundColor: '#0e0c0a',
+            cursor:          'pointer',
           }}
-          aria-label="Shop her collection"
+          aria-label="Explore her collection"
         >
           <Image
             src="/images/her_hero.jpg"
@@ -53,59 +164,55 @@ export default function HomePage() {
             sizes="50vw"
             style={{
               objectFit:      'cover',
-              objectPosition="center 78%"
-              filter:         'sepia(0.85) brightness(0.55) contrast(1.0)',
-              transition:     'filter 1s ease, transform 1.2s ease',
+              objectPosition: 'center 50%',
+              filter:         'sepia(0.75) brightness(0.52) contrast(1.02)',
+              transition:     'transform 1.2s ease',
             }}
             className="panel-img"
           />
-          <div
-            style={{
-              position:      'absolute',
-              inset:         0,
-              pointerEvents: 'none',
-              background:    'linear-gradient(to top, rgba(8,6,4,0.85) 0%, rgba(8,6,4,0.18) 40%, transparent 62%)',
-            }}
-          />
-          <div
-            style={{
-              position:     'relative',
-              zIndex:       2,
-              padding:      'clamp(1.5rem, 4vw, 3.5rem)',
-              paddingBottom: 'clamp(2rem, 5vw, 4rem)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem' }}>
-              <span aria-hidden="true" style={{ display: 'block', width: '1.5rem', height: '1px', backgroundColor: 'rgba(201,169,110,0.65)', flexShrink: 0 }} />
-              <p style={{ fontFamily: "'DM Sans'", fontSize: '0.56rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.85)', fontWeight: 300 }}>for her</p>
+          <div aria-hidden="true" style={{
+            position:      'absolute',
+            inset:         0,
+            pointerEvents: 'none',
+            background:    'linear-gradient(to top, rgba(8,6,4,0.90) 0%, rgba(8,6,4,0.12) 45%, transparent 68%)',
+          }} />
+          <div style={{ position: 'relative', zIndex: 2, padding: 'clamp(1.25rem, 3vw, 2.75rem)', paddingBottom: 'clamp(1.5rem, 3.5vw, 2.75rem)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '0.6rem' }}>
+              <span aria-hidden="true" style={{ display: 'block', width: '1.25rem', height: '1px', backgroundColor: 'rgba(201,169,110,0.65)', flexShrink: 0 }} />
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.54rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.85)', fontWeight: 300 }}>for her</p>
             </div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)', lineHeight: 0.97, letterSpacing: '-0.02em', color: 'rgba(237,232,226,0.95)', display: 'block', marginBottom: '0.05rem' }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.5rem, 2.5vw, 2.4rem)', lineHeight: 0.97, letterSpacing: '-0.02em', color: 'rgba(237,232,226,0.95)', display: 'block', marginBottom: '0.05rem' }}>
               her space.
             </h2>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)', lineHeight: 0.97, letterSpacing: '-0.02em', fontStyle: 'italic', color: 'rgba(201,169,110,0.9)', display: 'block', marginBottom: '1.1rem' }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.5rem, 2.5vw, 2.4rem)', lineHeight: 0.97, letterSpacing: '-0.02em', fontStyle: 'italic', color: 'rgba(201,169,110,0.9)', display: 'block', marginBottom: '0.8rem' }}>
               radiance, defined.
             </h2>
-            <p style={{ fontFamily: "'DM Sans'", fontSize: '0.56rem', fontWeight: 300, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(237,232,226,0.45)', marginBottom: '1.25rem' }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.53rem', fontWeight: 300, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(237,232,226,0.4)', marginBottom: '0.9rem' }}>
               face · body · ritual
             </p>
-            <span style={{ fontFamily: "'DM Sans'", fontSize: '0.58rem', fontWeight: 400, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.82)', borderBottom: '1px solid rgba(201,169,110,0.38)', paddingBottom: '2px' }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.55rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.8)', borderBottom: '1px solid rgba(201,169,110,0.32)', paddingBottom: '2px' }}>
               explore her collection →
             </span>
           </div>
         </Link>
 
-        {/* Him */}
+        {/* HIM
+            Source: him_hero.jpg 1200×2133, face at row 444 (21%)
+            Container 403px. objectPosition center 16% → face at 42% from top */}
         <Link
           href="/him"
           style={{
-            position:   'relative',
-            overflow:   'hidden',
-            display:    'flex',
-            alignItems: 'flex-end',
-            cursor:     'pointer',
-            borderLeft: '1px solid rgba(255,255,255,0.04)',
+            position:        'relative',
+            overflow:        'hidden',
+            display:         'flex',
+            flexDirection:   'column',
+            justifyContent:  'flex-end',
+            minHeight:       'clamp(300px, 28vw, 440px)',
+            backgroundColor: '#0e0c0a',
+            cursor:          'pointer',
+            borderLeft:      '1px solid rgba(255,255,255,0.05)',
           }}
-          aria-label="Shop him collection"
+          aria-label="Explore him collection"
         >
           <Image
             src="/images/him_hero.jpg"
@@ -114,121 +221,42 @@ export default function HomePage() {
             sizes="50vw"
             style={{
               objectFit:      'cover',
-              objectPosition="center 38%"
-              filter:         'sepia(0.85) brightness(0.65) contrast(1.0)',
-              transition:     'filter 1s ease, transform 1.2s ease',
+              objectPosition: 'center 16%',
+              filter:         'sepia(0.75) brightness(0.58) contrast(1.02)',
+              transition:     'transform 1.2s ease',
             }}
             className="panel-img"
           />
-          <div
-            style={{
-              position:      'absolute',
-              inset:         0,
-              pointerEvents: 'none',
-              background:    'linear-gradient(to top, rgba(8,6,4,0.85) 0%, rgba(8,6,4,0.18) 40%, transparent 62%)',
-            }}
-          />
-          <div
-            style={{
-              position:     'relative',
-              zIndex:       2,
-              padding:      'clamp(1.5rem, 4vw, 3.5rem)',
-              paddingBottom: 'clamp(2rem, 5vw, 4rem)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem' }}>
-              <span aria-hidden="true" style={{ display: 'block', width: '1.5rem', height: '1px', backgroundColor: 'rgba(201,169,110,0.65)', flexShrink: 0 }} />
-              <p style={{ fontFamily: "'DM Sans'", fontSize: '0.56rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.85)', fontWeight: 300 }}>for him</p>
+          <div aria-hidden="true" style={{
+            position:      'absolute',
+            inset:         0,
+            pointerEvents: 'none',
+            background:    'linear-gradient(to top, rgba(8,6,4,0.90) 0%, rgba(8,6,4,0.12) 45%, transparent 68%)',
+          }} />
+          <div style={{ position: 'relative', zIndex: 2, padding: 'clamp(1.25rem, 3vw, 2.75rem)', paddingBottom: 'clamp(1.5rem, 3.5vw, 2.75rem)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '0.6rem' }}>
+              <span aria-hidden="true" style={{ display: 'block', width: '1.25rem', height: '1px', backgroundColor: 'rgba(201,169,110,0.65)', flexShrink: 0 }} />
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.54rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.85)', fontWeight: 300 }}>for him</p>
             </div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)', lineHeight: 0.97, letterSpacing: '-0.02em', color: 'rgba(237,232,226,0.95)', display: 'block', marginBottom: '0.05rem' }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.5rem, 2.5vw, 2.4rem)', lineHeight: 0.97, letterSpacing: '-0.02em', color: 'rgba(237,232,226,0.95)', display: 'block', marginBottom: '0.05rem' }}>
               his pace.
             </h2>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)', lineHeight: 0.97, letterSpacing: '-0.02em', fontStyle: 'italic', color: 'rgba(201,169,110,0.9)', display: 'block', marginBottom: '1.1rem' }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(1.5rem, 2.5vw, 2.4rem)', lineHeight: 0.97, letterSpacing: '-0.02em', fontStyle: 'italic', color: 'rgba(201,169,110,0.9)', display: 'block', marginBottom: '0.8rem' }}>
               confidence, refined.
             </h2>
-            <p style={{ fontFamily: "'DM Sans'", fontSize: '0.56rem', fontWeight: 300, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(237,232,226,0.45)', marginBottom: '1.25rem' }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.53rem', fontWeight: 300, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(237,232,226,0.4)', marginBottom: '0.9rem' }}>
               face · body · performance
             </p>
-            <span style={{ fontFamily: "'DM Sans'", fontSize: '0.58rem', fontWeight: 400, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.82)', borderBottom: '1px solid rgba(201,169,110,0.38)', paddingBottom: '2px' }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.55rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(201,169,110,0.8)', borderBottom: '1px solid rgba(201,169,110,0.32)', paddingBottom: '2px' }}>
               explore him collection →
             </span>
           </div>
         </Link>
       </section>
 
-      {/* Panel hover styles */}
       <style>{`
-        a:hover .panel-img {
-          filter: sepia(0.5) brightness(0.72) contrast(1.0) !important;
-          transform: scale(1.03) !important;
-        }
+        a:hover .panel-img { transform: scale(1.03); }
       `}</style>
-
-      {/* ── BRAND STATEMENT ───────────────────────────────────── */}
-      <section
-        style={{
-          paddingTop:    'clamp(5rem, 10vw, 10rem)',
-          paddingBottom: 'clamp(5rem, 10vw, 10rem)',
-          paddingLeft:   'clamp(1.5rem, 5vw, 5rem)',
-          paddingRight:  'clamp(1.5rem, 5vw, 5rem)',
-          maxWidth:      '1480px',
-          margin:        '0 auto',
-          display:       'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap:           'clamp(3rem, 8vw, 8rem)',
-          alignItems:    'center',
-        }}
-        className="grid-cols-1 md:!grid-cols-2"
-      >
-        <div>
-          <p
-            style={{
-              fontFamily:    "'DM Sans', sans-serif",
-              fontSize:      '0.58rem',
-              fontWeight:    300,
-              letterSpacing: '0.36em',
-              textTransform: 'uppercase',
-              color:         'rgba(212, 170, 122, 0.65)',
-              marginBottom:  '1.75rem',
-            }}
-          >
-            the philosophy
-          </p>
-          <h2
-            style={{
-              fontFamily:    "'Cormorant Garamond', Georgia, serif",
-              fontWeight:    200,
-              fontSize:      'clamp(2.2rem, 4.5vw, 4.2rem)',
-              lineHeight:    0.92,
-              letterSpacing: '-0.03em',
-              color:         'rgba(237, 232, 226, 0.9)',
-            }}
-          >
-            every ingredient
-            <br />
-            <em style={{ fontStyle: 'italic', color: 'rgba(237, 232, 226, 0.38)' }}>
-              earns its place.
-            </em>
-          </h2>
-        </div>
-        <div>
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize:   '0.9375rem',
-              fontWeight: 300,
-              lineHeight: 1.9,
-              color:      'rgba(237, 232, 226, 0.48)',
-              marginBottom: '2rem',
-            }}
-        
-            hālo formulas are built around high-quality, carefully sourced ingredients — selected for what they do, not how they sound. Vegan, cruelty free, and tested for real results.
-          </p>
-          <Link href="/story" className="btn-link">
-            our story →
-          </Link>
-        </div>
-      </section>
 
       <Footer />
     </>
