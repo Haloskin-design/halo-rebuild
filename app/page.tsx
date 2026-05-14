@@ -12,16 +12,16 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
   
-      <Hero
-        imageSrc="/images/home_hero.webp"
-        objectPosition="center 96%"
-        eyebrow="the art of radiance"
-        headingLine1="skincare that works."
-        headingLine2="enhancing what is"
-        headingLine3="already yours."
-        
-        sub="Vegan - Cruelty free - Made sustainably in the UK"
-        showCtas={true} />
+     <Hero
+  imageSrc="/images/home_hero.webp"
+  objectPosition="center 96%"
+  eyebrow="the art of radiance"
+  headingLine1="skincare that works."
+  headingLine2="enhancing what is"
+  headingLine3="already yours."
+  sub="Vegan — Cruelty free — Made sustainably in the UK"
+  showCtas={true}
+/>
         
 
       {/* ── SPLIT PANELS ──────────────────────────────────────── */}
