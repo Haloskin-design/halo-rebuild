@@ -222,7 +222,7 @@ export default function HomePage() {
               color:      'rgba(237, 232, 226, 0.48)',
               marginBottom: '2rem',
             }}
-          >
+        
             hālo formulas are built around high-quality, carefully sourced ingredients — selected for what they do, not how they sound. Vegan, cruelty free, and tested for real results.
           </p>
           <Link href="/story" className="btn-link">
